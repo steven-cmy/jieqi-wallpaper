@@ -2,8 +2,9 @@ name: Build binaries
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 
 permissions:
   contents: write
