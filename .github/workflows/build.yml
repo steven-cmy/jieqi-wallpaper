@@ -35,23 +35,27 @@ jobs:
         run: |
           pyinstaller --onefile main.py
 
-      - name: Bundle binary and images into zip archive
+      - name: Bundle binary and images into archive (cross-platform)
         run: |
-          mkdir -p package
+          mkdir package
           OS_NAME=${{ matrix.os }}
-
-          # Copy binary to package/
+      
+          # Copy binary
           if [[ "${{ runner.os }}" == "Windows" ]]; then
             cp dist/main.exe package/jieqi-wallpaper-${OS_NAME}.exe
           else
             cp dist/main package/jieqi-wallpaper-${OS_NAME}
           fi
-
-          # Copy images folder to package/
+      
+          # Copy images
           cp -r 二十四节气 package/
-
-          # Create zip archive
-          zip -r jieqi-wallpaper-${OS_NAME}.zip package
+      
+          # Create archive (zip on Linux/macOS, Compress-Archive on Windows)
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
+            powershell -Command "Compress-Archive -Path package\* -DestinationPath jieqi-wallpaper-${OS_NAME}.zip"
+          else
+            zip -r jieqi-wallpaper-${OS_NAME}.zip package
+          fi
         shell: bash
 
       - name: Upload bundled archive
