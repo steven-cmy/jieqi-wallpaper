@@ -11,36 +11,45 @@ Jieqi Wallpaper is a project that provides beautiful wallpapers based on the 24 
 - High-quality wallpapers for each solar term.
 - Easy to use and customize.
 
-## Installation
-
-1. Clone the repository:
-
-    ```bash
-    git clone https://github.com/yourusername/jieqi-wallpaper.git
-    ```
-
-2. Navigate to the project directory:
-
-    ```bash
-    cd jieqi-wallpaper
-    ```
-
-3. Install dependencies:
-
-    ```bash
-    pip install -r requirements.txt
-    ```
-
 ## Usage
 
-1. Run the script:
+1. Use the pre-build binaries:
 
-    ```bash
-    npm start
-    ```
+    1. Go to [Release page](https://github.com/steven-cmy/jieqi-wallpaper/releases)
 
-2. Support customized wallpaper:
-    >make sure they include Jieqi in Chinese in their filename.
+    2. Download correct archive corresponding your OS
+
+    3. unzip and run executable
+
+2. Run script directly:
+   1. Clone the repository:
+
+        ```bash
+        git clone https://github.com/yourusername/jieqi-wallpaper.git
+        ```
+
+   2. Navigate to the project directory:
+
+       ```bash
+       cd jieqi-wallpaper
+       ```
+
+   3. Install dependencies:
+
+       ```bash
+       pip install -r requirements.txt
+       ```
+
+   4. Run script:
+
+       ```bash
+       python3 main.py
+       ```
+
+### Support customized wallpaper
+
+> [!IMPORTANT]  
+> Make sure they include Jieqi in Chinese in their filename.
 
 ## Contributing
 
