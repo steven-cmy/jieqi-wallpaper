@@ -11,11 +11,12 @@ permissions:
 
 jobs:
   build:
+    name: Build binaries on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -34,9 +35,62 @@ jobs:
         run: |
           pyinstaller --onefile main.py
 
-      - name: Upload build artifact
+      - name: Bundle binary and images into zip archive
+        run: |
+          mkdir -p package
+          OS_NAME=${{ matrix.os }}
+
+          # Copy binary to package/
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
+            cp dist/main.exe package/jieqi-wallpaper-${OS_NAME}.exe
+          else
+            cp dist/main package/jieqi-wallpaper-${OS_NAME}
+          fi
+
+          # Copy images folder to package/
+          cp -r 二十四节气 package/
+
+          # Create zip archive
+          zip -r jieqi-wallpaper-${OS_NAME}.zip package
+        shell: bash
+
+      - name: Upload bundled archive
         uses: actions/upload-artifact@v4
         with:
-          name: binary-${{ matrix.os }}
-          path: |
-            dist/*
+          name: jieqi-wallpaper-bundle-${{ matrix.os }}
+          path: jieqi-wallpaper-${{ matrix.os }}.zip
+
+
+  release:
+    name: Create GitHub Release and upload binaries
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./artifacts
+
+      - name: Display downloaded files
+        run: ls -R ./artifacts
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ github.run_number }}
+          name: Release v${{ github.run_number }}
+          body: |
+            Automated release from push on master branch.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload bundle archives to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ./artifacts/**/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
