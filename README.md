@@ -1,5 +1,7 @@
 # Jieqi Wallpaper
 
+[![Build binaries](https://github.com/steven-cmy/jieqi-wallpaper/actions/workflows/build.yml/badge.svg)](https://github.com/steven-cmy/jieqi-wallpaper/actions/workflows/build.yml)
+
 ENGLISH|[中文](README-zh-CN.md)
 
 Jieqi Wallpaper is a project that provides beautiful wallpapers based on the 24 solar terms of the traditional Chinese calendar.

@@ -1,5 +1,7 @@
 # 节气壁纸
 
+[![Build binaries](https://github.com/steven-cmy/jieqi-wallpaper/actions/workflows/build.yml/badge.svg)](https://github.com/steven-cmy/jieqi-wallpaper/actions/workflows/build.yml)
+
 [ENGLISH](README.md)|中文
 
 节气壁纸是一个提供基于中国传统二十四节气美丽壁纸的项目。
