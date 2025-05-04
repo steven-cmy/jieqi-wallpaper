@@ -34,7 +34,7 @@ jobs:
 
       - name: Build binary with PyInstaller
         run: |
-          pyinstaller --onefile main.py
+          pyinstaller --onefile --add-data 二十四节气:二十四节气 main.py
 
       - name: Bundle binary and images into archive (cross-platform)
         run: |
@@ -48,8 +48,8 @@ jobs:
             cp dist/main package/jieqi-wallpaper-${OS_NAME}
           fi
       
-          # Copy images
-          cp -r 二十四节气 package/
+          # # Copy images
+          # cp -r 二十四节气 package/
       
           # Create archive (zip on Linux/macOS, Compress-Archive on Windows)
           if [[ "${{ runner.os }}" == "Windows" ]]; then

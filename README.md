@@ -51,6 +51,8 @@ Jieqi Wallpaper is a project that provides beautiful wallpapers based on the 24 
 > [!IMPORTANT]  
 > Make sure they include Jieqi in Chinese in their filename.
 
+Please run script directly and replace images in 二十四节气 folder.
+
 ## Contributing
 
 Contributions are welcome! Please fork the repository and submit a pull request.
