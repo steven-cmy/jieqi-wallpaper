@@ -83,15 +83,15 @@ jobs:
       - name: Display downloaded files
         run: ls -R ./artifacts
 
-      - name: Create Release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: v${{ github.run_number }}
-          name: Release v${{ github.run_number }}
-          body: |
-            Automated release from push on master branch.
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Create Release
+      #   uses: softprops/action-gh-release@v2
+      #   with:
+      #     tag_name: v${{ github.run_number }}
+      #     name: Release v${{ github.run_number }}
+      #     body: |
+      #       Automated release from push on master branch.
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload bundle archives to Release
         uses: softprops/action-gh-release@v2
