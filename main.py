@@ -9,7 +9,7 @@ import os
 def find_wallpaper_path(dir: str, jieqi: JieQi) -> str:
     if not dir or not jieqi:
         return ""
-    for root, _, files in os.walk(wallpaper_dir):
+    for root, _, files in os.walk(dir):
         for file in files:
             if not file.startswith(".") and jieqi.toString() in file:
                 return os.path.join(root, file)
