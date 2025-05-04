@@ -1,10 +1,22 @@
 #!/usr/bin/env python3
 
 from datetime import datetime
+from pathlib import Path
+import sys
 from lunar_python import Solar, JieQi
 from wallpaper import set_wallpaper
 import os
 
+def resource_path(relative_path):
+    """ Get absolute path to resource (works for dev and PyInstaller) """
+    if getattr(sys, 'frozen', False):
+        # Running as bundled executable
+        base_path = Path(sys.executable).parent
+    else:
+        # Running as script
+        base_path = Path(__file__).parent
+
+    return base_path / relative_path
 
 def find_wallpaper_path(dir: str, jieqi: JieQi) -> str:
     if not dir or not jieqi:
@@ -17,7 +29,7 @@ def find_wallpaper_path(dir: str, jieqi: JieQi) -> str:
 
 
 def main():
-    wallpaper_dir = os.path.join(os.path.dirname(__file__), '二十四节气')
+    wallpaper_dir = resource_path('二十四节气')
     lunar_date = Solar.fromDate(datetime.now()).getLunar()
     if not (jieqi := lunar_date.getCurrentJieQi()):
         jieqi = lunar_date.getPrevJieQi()
