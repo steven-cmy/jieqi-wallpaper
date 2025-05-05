@@ -34,7 +34,7 @@ jobs:
 
       - name: Build binary with PyInstaller
         run: |
-          pyinstaller --onefile main.py
+          pyinstaller --onefile --noconsole main.py
 
       - name: Bundle binary and images into archive (cross-platform)
         run: |
